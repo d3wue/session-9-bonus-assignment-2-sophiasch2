@@ -28,5 +28,5 @@ if r.status_code == 200:
     for team in teams:
 #team=teams [0] (nur das erste)
         teamName=team.find('td',{'class': 'hauptlink no-border-links'}).get_text()
-        squad=team.find('td', )
-        print (teamName)
+        squad=team.find('td', {'class': 'zentriert[1]'})
+        print (squad)

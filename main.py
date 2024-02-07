@@ -16,6 +16,8 @@ userAgent = {
 #int (input("enter number: › "))
 #if userInput==1:
 
+teamData = {}
+
 url ="https://www.transfermarkt.com/bundesliga/startseite/wettbewerb/L1"
 r = requests.get(url, headers=userAgent)
 if r.status_code == 200:
@@ -27,6 +29,10 @@ if r.status_code == 200:
 
     for team in teams:
 #team=teams [0] (nur das erste)
-        teamName=team.find('td',{'class': 'hauptlink no-border-links'}).get_text()
-        squad=team.find('td', {'class': 'zentriert[1]'})
-        print (squad)
+        teamName=team.find('td',{'class': 'hauptlink no-border-links'}).get_text().strip()
+        info = team.find_all('td', {'class': 'zentriert'})
+        squad = info[1].text
+        age = info[2].text
+        teamData[teamName] = {"squad": squad, "age": age}
+
+
